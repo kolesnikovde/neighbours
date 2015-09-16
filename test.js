@@ -1,7 +1,7 @@
 var assert = require('assert');
-var neighbors = require('./');
+var neighbours = require('./');
 
-describe('neighbors', function() {
+describe('neighbours', function() {
   function sample() {
     return [
       'abcd',
@@ -15,7 +15,7 @@ describe('neighbors', function() {
       var result = '';
       var cells = sample();
 
-      neighbors.vonNeumann({ x: 1, y: 1 }, function(x, y) {
+      neighbours.vonNeumann({ x: 1, y: 1 }, function(x, y) {
         result += cells[y][x];
       });
 
@@ -35,7 +35,7 @@ describe('neighbors', function() {
         'm0vn00d-d'
       ];
 
-      neighbors.vonNeumann({ x: 5, y: 3, range: range }, function(x, y) {
+      neighbours.vonNeumann({ x: 5, y: 3, range: range }, function(x, y) {
         iterations++;
 
         if (cells[y] && cells[y][x]) {
@@ -51,7 +51,7 @@ describe('neighbors', function() {
       var result = [];
       var cells = sample();
 
-      neighbors.vonNeumann(function(x, y) {
+      neighbours.vonNeumann(function(x, y) {
         result.push([cells[y] && cells[y][x], x, y]);
       });
 
@@ -68,7 +68,7 @@ describe('neighbors', function() {
       var iterations = 0;
       var cells = sample();
 
-      neighbors.vonNeumann(function(x, y) {
+      neighbours.vonNeumann(function(x, y) {
         ++iterations;
 
         if (cells[y] && cells[y][x]) {

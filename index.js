@@ -18,4 +18,3 @@ exports.vonNeumann = function(options, fn) {
     }
   }
 }
-
