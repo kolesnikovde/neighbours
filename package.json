@@ -1,0 +1,25 @@
+{
+  "name": "neighbours",
+  "version": "1.0.0",
+  "description": "Utils for traversing Moore and von Neumann neighbourhoods.",
+  "author": "Danil Kolesnikov <kolesnikovde@gmail.com>",
+  "homepage": "https://github.com/kolesnikovde/neighbours",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kolesnikovde/neighbours.git"
+  },
+  "keywords": [
+    "neighbourhood",
+    "cells",
+    "vonneumann",
+    "moore"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "2.3.0"
+  }
+}

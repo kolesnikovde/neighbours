@@ -1,21 +1,21 @@
 var assert = require('assert');
 var neighbours = require('./');
 
-describe('neighbours', function() {
-  function sample() {
-    return [
-      'abcd',
-      'efgh',
-      'ijkl'
-    ];
-  }
+function sample() {
+  return [
+    'abcd',
+    'efgh',
+    'ijkl'
+  ];
+}
 
+describe('neighbours', function() {
   describe('#vonNeumann', function() {
-    it('traverse von Neumann neighbourhood of range R', function() {
+    it('traverses von Neumann neighbourhood of range R', function() {
       var result = '';
       var cells = sample();
 
-      neighbours.vonNeumann({ x: 1, y: 1 }, function(x, y) {
+      neighbours.vonNeumann({ x: 1, y: 1 }, function(x, y, r) {
         result += cells[y][x];
       });
 
@@ -35,7 +35,7 @@ describe('neighbours', function() {
         'm0vn00d-d'
       ];
 
-      neighbours.vonNeumann({ x: 5, y: 3, range: range }, function(x, y) {
+      neighbours.vonNeumann({ x: 5, y: 3, range: range }, function(x, y, r) {
         iterations++;
 
         if (cells[y] && cells[y][x]) {
@@ -51,15 +51,15 @@ describe('neighbours', function() {
       var result = [];
       var cells = sample();
 
-      neighbours.vonNeumann(function(x, y) {
-        result.push([cells[y] && cells[y][x], x, y]);
+      neighbours.vonNeumann(function(x, y, r) {
+        result.push([cells[y] && cells[y][x], x, y, r]);
       });
 
       assert.deepEqual(result, [
-        [undefined, -1,  0],
-        [undefined,  0, -1],
-        ['b',        1,  0],
-        ['e',        0,  1]
+        [undefined, -1,  0, 1],
+        [undefined,  0, -1, 1],
+        ['b',        1,  0, 1],
+        ['e',        0,  1, 1]
       ]);
     });
 
@@ -68,7 +68,7 @@ describe('neighbours', function() {
       var iterations = 0;
       var cells = sample();
 
-      neighbours.vonNeumann(function(x, y) {
+      neighbours.vonNeumann(function(x, y, r) {
         ++iterations;
 
         if (cells[y] && cells[y][x]) {
@@ -79,6 +79,21 @@ describe('neighbours', function() {
 
       assert.equal(result, 'b');
       assert.equal(iterations, 3);
+    });
+  });
+});
+
+describe('neighbours', function() {
+  describe('#moore', function() {
+    it('traverses Moore neighbourhood of range R', function() {
+      var result = '';
+      var cells = sample();
+
+      neighbours.moore({ x: 1, y: 1}, function(x, y, r) {
+        result += cells[y][x];
+      });
+
+      assert.equal(result, 'ackibgje');
     });
   });
 });
