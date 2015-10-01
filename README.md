@@ -28,6 +28,32 @@ neighbours.vonNeumann({ x: 1, y: 1, range: 2 }, function(x, y, r) {
 // 0 2 2
 ```
 
+Conway's Game of Life:
+```js
+function gen(cells) {
+  var width = cells.length,
+      height = cells[0] ? cells[0].length : 0,
+      board = new Array(width),
+      n;
+
+  for (var x = 0; x < width; ++x) {
+    board[x] = new Array(height);
+
+    for (var y = 0; y < height; ++y) {
+      n = 0;
+
+      neighbours.moore({ x: x, y: y }, function(dx, dy) {
+        if (cells[dx] && cells[dx][dy]) n++;
+      });
+
+      board[x][y] = n === 2 ? cells[x][y] : n === 3;
+    }
+  }
+
+  return board;
+}
+```
+
 ### API
 
 ```js
